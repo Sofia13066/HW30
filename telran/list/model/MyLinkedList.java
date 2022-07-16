@@ -71,12 +71,19 @@ public class MyLinkedList<E> implements IList<E> {
         node.prev = newNode;
     
     }
-        if(prev == null){     //doesn't work right
+        if(prev == null && index == 0){     //doesn't work right
+            first = newNode;
+            newNode.next = node;
+            node.prev = newNode;
+            
+            
+        }
+
+        if(prev == null && index != 0){     //doesn't work right
             
             newNode.next = node;
             node.prev = newNode;
-            newNode.prev = getNodeByIndex(index-1);
-            getNodeByIndex(index-1).next = newNode;
+            
             
         }
         // if(node == null){
