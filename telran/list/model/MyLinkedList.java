@@ -63,35 +63,28 @@ public class MyLinkedList<E> implements IList<E> {
         
 		Node<E> node = getNodeByIndex(index);
         Node<E> prev = node.prev;
+		Node<E> next = node.next;
         Node<E> newNode = new Node<E>(prev, element, node);
-        if(prev != null) {
+        if(prev != null && node != last) {
         prev.next = newNode;
         newNode.prev = prev;
         newNode.next = node;
         node.prev = newNode;
     
     }
-        if(prev == null && index == 0){     //doesn't work right
+        if(prev == null && index == 0){     
             first = newNode;
             newNode.next = node;
             node.prev = newNode;
             
-            
         }
 
-        if(prev == null && index != 0){     //doesn't work right
+        // if (node == last){           //fail
+        //     last = newNode;
+		// 	newNode.prev = node;
+		// 	node.next = newNode;
             
-            newNode.next = node;
-            node.prev = newNode;
             
-            
-        }
-        // if(node == null){
-        //     prev.next = newNode;
-        //     newNode.prev = prev;
-        //     newNode.next = node;
-
-        //     // size++;
         // }
 
 		return true;
@@ -113,7 +106,7 @@ public class MyLinkedList<E> implements IList<E> {
 		}
         return node;
     } else{
-        for (int i = size; i > index; i--) {
+        for (int i = size-2; i > index; i--) {
 			node1 = node1.prev;
 		}
         return node1;
